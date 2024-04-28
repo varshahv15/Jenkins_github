@@ -1,59 +1,57 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage('Build'){
-            steps{
+    stages {
+        stage('Build') {
+            steps {
                 echo "Using Ansible Automation Tool to compile and package the code"
             }
         }
-        stage('Test'){
-            steps{
+        stage('Test') {
+            steps {
                 echo "Unit Testing is Working and code functions as expected"
-                echo " INtegration Testing is done and different components of the application work together"
+                echo "Integration Testing is done and different components of the application work together"
             }
-            post{
-                success{
-                    mail to: "varsha15hv@gmail.com",
-                    subject: "Test success or failure",
-                    body: "Unit Testing and Integration Testing are completed successfully"
-                    attachmentsPattern: 'build.log'
+            post {
+                success {
+                    emailext to: "varsha15hv@gmail.com",
+                             subject: "Test success or failure",
+                             body: "Unit Testing and Integration Testing are completed successfully",
+                             attachmentsPattern: 'build.log'
                 }
             }
         }
-        stage('Code Analysis'){
-            steps{
+        stage('Code Analysis') {
+            steps {
                 echo "Analyzing the code using Clang Tool."
             }
         }
-        stage('Security Scan'){
-            steps{
-                echo "Scanning to identify any vulnerabities in the code using Nexpose Security Tool."
+        stage('Security Scan') {
+            steps {
+                echo "Scanning to identify any vulnerabilities in the code using Nexpose Security Tool."
             }
-            post{
-                success{
-                    mail to: "varsha15hv@gmail.com",
-                    subject: "Security Scan success or failure",
-                    body: "Security Scan stage is successful without any vulnerabities found"
-                    attachmentsPattern: 'build.log'
+            post {
+                success {
+                    emailext to: "varsha15hv@gmail.com",
+                             subject: "Security Scan success or failure",
+                             body: "Security Scan stage is successful without any vulnerabilities found",
+                             attachmentsPattern: 'build.log'
+                }
             }
         }
-        }
-        stage('Deploy to Staging'){
-            steps{
+        stage('Deploy to Staging') {
+            steps {
                 echo "Deploying the application to staging server - AWS EC2 instance"
             }
         }
-        stage('Integration Tests on Staging'){
-            steps{
+        stage('Integration Tests on Staging') {
+            steps {
                 echo "Running Integration testing on the AWS EC2 instance application functions as expected in a production-like environment"
             }
         }
-        stage('Deploy to Production'){
-            steps{
+        stage('Deploy to Production') {
+            steps {
                 echo "Deploying the application to production server - AWS EC2 instance"
             }
         }
-       
     }
-
 }
