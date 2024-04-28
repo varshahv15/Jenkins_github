@@ -17,13 +17,13 @@ pipeline{
                     emailext to: "varsha15hv@gmail.com",
                              subject: "Test success",
                              body: "Unit Testing and Integration Testing are completed successfully",
-                             attachmentsPattern: 'test.log'
+                             attachLog: 'test.log'
                 }
                 failure {
                     emailext to: "varsha15hv@gmail.com",
                              subject: "Test failure",
                              body: "Unit Testing or Integration Testing failed",
-                             attachmentsPattern: 'test.log'
+                             attachLog: 'test.log'
                 }
             }
         }
