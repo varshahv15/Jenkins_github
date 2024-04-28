@@ -15,7 +15,7 @@ pipeline{
                 success{
                     mail to: "varsha15hv@gmail.com",
                     subject: "Test success or failure",
-                    body: "Unit Testing and Integration Testing are completed successfully",
+                    body: "Unit Testing and Integration Testing are completed successfully"
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline{
                 success{
                     mail to: "varsha15hv@gmail.com",
                     subject: "Security Scan success or failure",
-                    body: "Security Scan stage is successful without any vulnerabities found",
+                    body: "Security Scan stage is successful without any vulnerabities found"
             }
         }
         stage('Deploy to Staging'){
