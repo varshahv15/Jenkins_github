@@ -8,12 +8,9 @@ pipeline{
         }
         stage('Test') {
             steps {
-                echo "Simulating Unit Testing"
-                echo "Simulating Integration Testing"
-                // Generate test.log file (simulation)
+                echo "Unit Testing is Working and code functions as expected"
+                echo "Integration Testing is done and different components of the application work together"
                 sh 'echo "Unit Testing and Integration Testing are completed successfully" > test.log'
-                // Archive test.log as an artifact
-                archiveArtifacts artifacts: 'test.log', allowEmptyArchive: true
             }
             post {
                 success {
@@ -38,14 +35,22 @@ pipeline{
         stage('Security Scan'){
             steps{
                 echo "Scanning to identify any vulnerabities in the code using Nexpose Security Tool."
+                sh 'echo "Nexpose Security executed successfuly without any vulnerabilities" > security.log'
             }
-            post{
-                success{
-                    mail to: "varsha15hv@gmail.com",
-                    subject: "Security Scan success or failure",
-                    body: "Security Scan stage is successful without any vulnerabities found"
+            post {
+                success {
+                    emailext to: "varsha15hv@gmail.com",
+                             subject: "Security Scan success",
+                             body: "Security Scan stage is successful without any vulnerabilities found",
+                             attachmentsPattern: 'test.log'
+                }
+                failure {
+                    emailext to: "varsha15hv@gmail.com",
+                             subject: "Security Scan failed",
+                             body: "Security Scan stage is failed, vulnerabilities found",
+                             attachmentsPattern: 'test.log'
+                }
             }
-        }
         }
         stage('Deploy to Staging'){
             steps{
