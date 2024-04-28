@@ -17,13 +17,13 @@ pipeline{
                     emailext to: "varsha15hv@gmail.com",
                              subject: "Test success",
                              body: "Unit Testing and Integration Testing are completed successfully",
-                             attachLog: 'test.log'
+                             attachmentsPattern: 'test.log'
                 }
                 failure {
                     emailext to: "varsha15hv@gmail.com",
                              subject: "Test failure",
                              body: "Unit Testing or Integration Testing failed",
-                             attachLog: 'test.log'
+                             attachmentsPattern: 'test.log'
                 }
             }
         }
@@ -42,13 +42,13 @@ pipeline{
                     emailext to: "varsha15hv@gmail.com",
                              subject: "Security Scan success",
                              body: "Security Scan stage is successful without any vulnerabilities found",
-                             attachmentsPattern: 'test.log'
+                             attachmentsPattern: 'security-scan.log'
                 }
                 failure {
                     emailext to: "varsha15hv@gmail.com",
                              subject: "Security Scan failed",
                              body: "Security Scan stage is failed, vulnerabilities found",
-                             attachmentsPattern: 'test.log'
+                             attachmentsPattern: 'security-scan.log'
                 }
             }
         }
