@@ -42,13 +42,13 @@ pipeline{
                     emailext to: "varsha15hv@gmail.com",
                              subject: "Security Scan success",
                              body: "Security Scan stage is successful without any vulnerabilities found",
-                             attachmentsPattern: 'security-scan.log'
+                             attachmentsPattern: 'security.log'
                 }
                 failure {
                     emailext to: "varsha15hv@gmail.com",
                              subject: "Security Scan failed",
                              body: "Security Scan stage is failed, vulnerabilities found",
-                             attachmentsPattern: 'security-scan.log'
+                             attachmentsPattern: 'security.log'
                 }
             }
         }
