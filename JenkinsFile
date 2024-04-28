@@ -35,6 +35,7 @@ pipeline{
                     body: "Security Scan stage is successful without any vulnerabities found"
             }
         }
+        }
         stage('Deploy to Staging'){
             steps{
                 echo "Deploying the application to staging server - AWS EC2 instance"
@@ -52,5 +53,5 @@ pipeline{
         }
        
     }
-}
+
 }
